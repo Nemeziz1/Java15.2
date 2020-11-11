@@ -5,30 +5,33 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class FileOpenManager {
-        String key;
-        String value;
 
-        Map<String, String> map = new HashMap<>();
+        private Map<String, String> map = new HashMap<>();
 
-        public void getName() {
-            map.get(key + map.get(key));
+        public void registered(String ext, String name) {
+            map.put(ext.toLowerCase(), name);
         }
 
-        public void getRegisteredBinding() {
+        public String getName(String ext) {
+            return map.get(ext.toLowerCase());
+        }
+
+        public List<String> getRegisteredBinding() {
             Set<String> keys = map.keySet();
-            for (String key : keys) {
-                map.get(key);
-            }
+            List<String> list = new ArrayList<>(keys);
+            Comparator comparator = new Comparator();
+            list.sort(comparator);
+            return list;
         }
 
-        public void remove() {
-            map.remove(key);
+        public String remove(String ext)
+        {
+            return map.remove(ext.toLowerCase());
         }
 
-        public void getAllBinding() {
-            for (String key : map.values()) {
-                map.get(key);
-            }
+        public Set<String> getAllBinding() {
+           Collection<String> tmp = map.values();
+            return new HashSet<>(tmp);
         }
 }
 
